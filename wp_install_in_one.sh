@@ -30,4 +30,8 @@ name="$(whoami)_$MYSQL_DB" && \
 uapi Mysql set_privileges_on_database \
 user="$(whoami)_$MYSQL_USER" database="$(whoami)_$MYSQL_DB" privileges='ALL PRIVILEGES'
 
+cp $(pwd)/wp-config-sample.php $(pwd)/wp-config.php
+sed -i "s/username_here/$(whoami)_$MYSQL_USER/g" $(pwd)/wp-config.php
+sed -i "s/password_here/$MYSQL_PASS/g" $(pwd)/wp-config.php
+sed -i "s/database_name_here/$(whoami)_$MYSQL_DB/g" $(pwd)/wp-config.php
 
